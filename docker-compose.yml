@@ -1,0 +1,23 @@
+services:
+  mi-servidor-web:
+    image: nginx
+    container_name: contenedor_nginx_compose
+    ports:
+      - "8081:80"
+    volumes:
+      - .:/usr/share/nginx/html
+
+  mi-base-datos:
+    image: postgres:15
+    container_name: contenedor_postgres_compose
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: tecmij
+      POSTGRES_PASSWORD: mi_password_seguro
+      POSTGRES_DB: mi_base_devops
+    volumes:
+      - datos_postgres:/var/lib/postgresql/data
+
+volumes:
+  datos_postgres:
